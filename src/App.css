@@ -92,3 +92,101 @@
   margin: 0;
   font-weight: 400;
 }
+
+.food-icon {
+  height: 8vh;
+  position: fixed;
+}
+
+#bread-icon {
+  top: 20vh;
+  left: 10vw;
+}
+
+#lettuce-icon {
+  top: 50vh;
+  left: 15vw;
+}
+
+@media (max-width: 760px) {
+  #lettuce-icon {
+    display: none;
+  }
+}
+
+#cheese-icon {
+  top: 20vh;
+  left: 45vw;
+}
+
+#steak-icon {
+  top: 10vh;
+  left: 80vw;
+}
+
+#avocado-icon {
+  top: 40vh;
+  left: 85vw;
+}
+
+@media (max-width: 760px) {
+  #avocado-icon {
+    display: none;
+  }
+}
+
+#fish-icon {
+  top: 70vh;
+  left: 50vw;
+}
+
+#veggie-icon {
+  top: 80vh;
+  left: 75vw;
+}
+
+#watermelon-icon {
+  top: 80vh;
+  left: 10vw;
+}
+
+/* recipe page */
+
+#bread-icon-rec {
+  top: 20vh;
+  left: 8vw;
+}
+
+#lettuce-icon-rec {
+  top: 50vh;
+  left: 12vw;
+}
+
+#cheese-icon-rec {
+  top: 80vh;
+  left: 8vw;
+}
+
+#steak-icon-rec {
+  top: 10vh;
+  left: 83vw;
+}
+
+#avocado-icon-rec {
+  top: 40vh;
+  left: 88vw;
+}
+
+#fish-icon-rec {
+  top: 75vh;
+  left: 82vw;
+}
+
+@media (max-width: 760px) {
+  #bread-icon-rec { display: none; }
+  #lettuce-icon-rec { display: none; }
+  #cheese-icon-rec { display: none; }
+  #steak-icon-rec { display: none; }
+  #avocado-icon-rec { display: none; }
+  #fish-icon-rec { display: none; }
+}

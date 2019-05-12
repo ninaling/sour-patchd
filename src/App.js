@@ -1,5 +1,13 @@
 import React from 'react';
 import logo from './assets/logo-navy.png';
+import bread from './assets/icons/bread.svg';
+import lettuce from './assets/icons/lettuce.svg';
+import cheese from './assets/icons/cheese.svg';
+import steak from './assets/icons/steak.svg';
+import avocado from './assets/icons/avocado.svg';
+import fish from './assets/icons/fish.svg';
+import veggie from './assets/icons/veggie.svg';
+import watermelon from './assets/icons/watermelon.svg';
 import './App.css';
 import Recipe from './Recipe';
 import Form from './Form';
@@ -31,6 +39,14 @@ class App extends React.Component {
   getHomeScreen() {
     return (<div className="App">
       <div className="App-header">
+        <img className="food-icon" id="bread-icon" src={bread} alt="" />
+        <img className="food-icon" id="lettuce-icon" src={lettuce} alt="" />
+        <img className="food-icon" id="cheese-icon" src={cheese} alt="" />
+        <img className="food-icon" id="steak-icon" src={steak} alt="" />
+        <img className="food-icon" id="avocado-icon" src={avocado} alt="" />
+        <img className="food-icon" id="fish-icon" src={fish} alt="" />
+        <img className="food-icon" id="veggie-icon" src={veggie} alt="" />
+        <img className="food-icon" id="watermelon-icon" src={watermelon} alt="" />
         <h1 id="homepage-title">
           Welcome to Sour Patch'd.
         </h1>
@@ -46,6 +62,12 @@ class App extends React.Component {
   getRecipeDisplay() {
     return (<div className="App">
       <div className="recipe-display">
+        <img className="food-icon" id="bread-icon-rec" src={bread} alt="" />
+        <img className="food-icon" id="lettuce-icon-rec" src={lettuce} alt="" />
+        <img className="food-icon" id="cheese-icon-rec" src={cheese} alt="" />
+        <img className="food-icon" id="steak-icon-rec" src={steak} alt="" />
+        <img className="food-icon" id="avocado-icon-rec" src={avocado} alt="" />
+        <img className="food-icon" id="fish-icon-rec" src={fish} alt="" />
         <h6>You just got sour patch'd!</h6>
         <h1>Available Recipes</h1>
         {this.state.recipes.map((item, index) => (
@@ -62,7 +84,7 @@ class App extends React.Component {
     return (
       <div>
         <nav id="nav-bar">
-          <button onClick={() => {this.returnToHome()}}><img src={logo}/></button>
+          <button onClick={() => {this.returnToHome()}}><img src={logo} alt="logo"/></button>
         </nav>
         {display}
       </div>);}
