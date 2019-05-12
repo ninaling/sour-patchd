@@ -14,7 +14,7 @@ function parseOutput(textDescriptors) {
 
 // Performs label detection on the image file
 async function parseImage() {
-  const fileName = '/Users/rahulnatarajan/Desktop/sour-patchd/backend/receipt.jpg';
+  const fileName = '/Users/Saquib/Desktop/test1.jpg';
   let rdci_codes = [];
 
   try {
