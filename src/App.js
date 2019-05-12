@@ -13,6 +13,7 @@ import milk from './assets/icons/milk.svg';
 import './App.css';
 import Recipe from './Recipe';
 import Form from './Form';
+import Loading from './Loading';
 
 var recipesTemp = [
   {"name": "Chocolate Chip Cookies", "ingredients": ["Flour", "Butter", "Chocolate"], "ingredientsNeeded": ["Sugar"], "url": ""},
@@ -65,7 +66,8 @@ class App extends React.Component {
       'ingredientsNeeded': data.data[2]['have_nots'],
       'url': data.data[2]['url']
     });
-    this.setState({tempRecipes: res, recipes: recipe, receiptProcessed: true});
+    this.setState({tempRecipes: res, recipes: recipe, receiptProcessed: true, receiptProcessing: false})
+
   }
 
   getHomeScreen() {
@@ -93,7 +95,34 @@ class App extends React.Component {
       </div>
     </div>);}
 
+  getLoadingScreen() {
+    return (<div className="App">
+      <div className="App-header">
+        <img className="food-icon" id="bread-icon" src={bread} alt="" />
+        <img className="food-icon" id="lettuce-icon" src={lettuce} alt="" />
+        <img className="food-icon" id="cheese-icon" src={cheese} alt="" />
+        <img className="food-icon" id="steak-icon" src={steak} alt="" />
+        <img className="food-icon" id="avocado-icon" src={avocado} alt="" />
+        <img className="food-icon" id="fish-icon" src={fish} alt="" />
+        <img className="food-icon" id="veggie-icon" src={veggie} alt="" />
+        <img className="food-icon" id="watermelon-icon" src={watermelon} alt="" />
+        <img className="food-icon" id="egg-icon" src={egg} alt="" />
+        <img className="food-icon" id="milk-icon" src={milk} alt="" />
+        {<Loading />}
+      </div>
+    </div>);
+  }
+
   getRecipeDisplay() {
+    let body;
+    if (this.state.recipes.length == 0) {
+      body = <h3>Oh no! We couldn't find any recipes. <br /> Try another receipt?</h3>;
+    }
+    else {
+      body = this.state.recipes.map((item, index) => (
+        <Recipe key={item.index} name={item.name} ingredients={item.ingredients} ingredientsNeeded={item.ingredientsNeeded} url={item.url}/>
+      ));
+    }
     return (<div className="App">
       <div className="recipe-display">
         <img className="food-icon" id="bread-icon-rec" src={bread} alt="" />
@@ -104,16 +133,16 @@ class App extends React.Component {
         <img className="food-icon" id="fish-icon-rec" src={fish} alt="" />
         <h6>You just got sour patch'd!</h6>
         <h1>Available Recipes</h1>
-        {this.state.recipes.map((item, index) => (
-          <Recipe key={item.index} name={item.name} ingredients={item.ingredients} ingredientsNeeded={item.ingredientsNeeded} url={item.url}/>
-        ))}
+        {body}
       </div>
     </div>);}
 
   render() {
     const isReceiptProcessed = this.state.receiptProcessed;
+    const isReceiptProcessing = this.state.receiptProcessing;
     let display;
-    if (isReceiptProcessed) display = this.getRecipeDisplay();
+    if (isReceiptProcessing) display = this.getLoadingScreen();
+    else if (isReceiptProcessed) display = this.getRecipeDisplay();
     else display = this.getHomeScreen();
     return (
       <div>

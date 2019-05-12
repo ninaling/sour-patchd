@@ -48,14 +48,14 @@ class Form extends React.Component {
                 }}
             </script>
             <form id="file-form" onSubmit={this.onFormSubmit}>
-                <label htmlFor="file-upload" class="file-upload-button" id="file-upload-label">
+                <label htmlFor="file-upload" className="file-upload-button" id="file-upload-label">
                     Choose a file</label>
                 <input type="file" name="recfile" onChange={this.onChange} id="file-upload"/>
                 <span id="file-upload-text"></span>
-                <button type="submit" class="file-upload-button" id="file-upload-submit">Upload</button>
+                <button type="submit" className="file-upload-button" id="file-upload-submit">Upload</button>
             </form>
           </div>
-        )
+        );
     }
 }
 
