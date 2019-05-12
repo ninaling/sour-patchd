@@ -1,0 +1,34 @@
+#file-upload {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.file-upload-button {
+  font-size: 0.8em;
+  border-radius: 0.8em;
+}
+
+.file-upload-button:hover {
+  cursor: pointer;
+}
+
+#file-upload-label {
+  background-color: #12387a;
+  color: #FDEBD0;
+  padding: 0.5em;
+  display: inline-block;
+  margin-right: 1em;
+}
+
+#file-upload-submit {
+  border: #12387a 0.2em solid;
+  color: #12387a;
+  padding: 0.3em;
+  background: none;
+  background-color: none;
+  display: inline-block;
+  font-family: 'Lora', serif;
+  font-weight: 700;
+}

@@ -1,4 +1,5 @@
 import React from 'react'
+import './Form.css';
 const axios = require("axios");
 
 class Form extends React.Component {
@@ -34,8 +35,9 @@ class Form extends React.Component {
     render() {
         return (
             <form onSubmit={this.onFormSubmit}>
-                <input type="file" name="recfile" onChange= {this.onChange} />
-                <button type="submit">Upload</button>
+                <input type="file" name="recfile" onChange={this.onChange} id="file-upload"/>
+                <label htmlFor="file-upload" class="file-upload-button" id="file-upload-label">Choose a file</label>
+                <button type="submit" class="file-upload-button" id="file-upload-submit">Upload</button>
             </form>
         )
     }
