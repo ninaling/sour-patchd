@@ -1,0 +1,14 @@
+#loading-icon {
+	  animation: loading-icon-spin infinite 3s linear;
+	  height: 40vh;
+	  pointer-events: none;
+	}
+
+@keyframes loading-icon-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

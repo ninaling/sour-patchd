@@ -13,6 +13,7 @@ import milk from './assets/icons/milk.svg';
 import './App.css';
 import Recipe from './Recipe';
 import Form from './Form';
+import Loading from './Loading';
 
 var recipesTemp = [
   {"name": "Chocolate Chip Cookies", "ingredients": ["Flour", "Butter", "Chocolate"], "ingredientsNeeded": ["Sugar"], "url": ""},
@@ -83,8 +84,10 @@ class App extends React.Component {
 
   render() {
     const isReceiptProcessed = this.state.receiptProcessed;
+    const isReceiptProcessing = this.state.receiptProcessing;
     let display;
-    if (isReceiptProcessed) display = this.getRecipeDisplay();
+    if (isReceiptProcessing) display = <Loading />
+    else if (isReceiptProcessed) display = this.getRecipeDisplay();
     else display = this.getHomeScreen();
     return (
       <div>
