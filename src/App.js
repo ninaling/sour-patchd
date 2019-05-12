@@ -5,14 +5,14 @@ import Recipe from './Recipe';
 import Form from './Form';
 
 var recipes = [
-  {"name": "Chocolate Chip Cookies", "ingredients": ["Flour", "Butter", "Chocolate"]},
-  {"name": "Snickerdoodles", "ingredients": ["Flour", "Butter", "Cinnamon"]}
+  {"name": "Chocolate Chip Cookies", "ingredients": ["Flour", "Butter", "Chocolate"], "ingredientsNeeded": ["Sugar"]},
+  {"name": "Snickerdoodles", "ingredients": ["Flour", "Butter", "Cinnamon"], "ingredientsNeeded": []}
 ];
 
 var homeScreen = <div className="App">
     <div className="App-header">
-      <h1>
-        Welcome to Sour Patchd.
+      <h1 id="homepage-title">
+        Welcome to Sour Patch'd.
       </h1>
       <div>
         Get Started:
@@ -25,13 +25,16 @@ var homeScreen2 = <div className="App">
     <div className="recipe-display">
       <h1>Available Recipes</h1>
       {recipes.map((item, index) => (
-        <Recipe name={item.name}/>
+        <Recipe key={item.index} name={item.name} ingredients={item.ingredients} ingredientsNeeded={item.ingredientsNeeded}/>
       ))}
     </div>
   </div>;
 
 function App() {
-  return homeScreen;
+  return (<nav>
+
+    </nav>
+    , homeScreen2);
 }
 
 export default App;

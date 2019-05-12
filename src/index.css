@@ -4,15 +4,16 @@ body {
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
-  /* -moz-osx-font-smoothing: grayscale; */
+  font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
 h1, h2 {
   font-family: 'Lobster', cursive;
-  color: #FDEBD0;
+  /* color: #FDEBD0; */
   font-size: 8vh;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
 }
 
 code {
