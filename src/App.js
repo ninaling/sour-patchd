@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './assets/logo-navy.png';
 import './App.css';
 import Recipe from './Recipe';
+import Form from './Form';
 
 var recipes = [
   {"name": "Chocolate Chip Cookies", "ingredients": ["Flour", "Butter", "Chocolate"], "ingredientsNeeded": ["Sugar"]},
@@ -15,10 +16,7 @@ var homeScreen = <div className="App">
       </h1>
       <div>
         Get Started:
-        <form id="homepage-button-container">
-          <input type="file" name="pic" accept="image/*" className="homepage-button"/>
-          <input type="submit" className="homepage-button"/>
-        </form>
+        <Form/>
       </div>
     </div>
   </div>;
@@ -41,3 +39,8 @@ function App() {
 }
 
 export default App;
+
+// <form id="homepage-button-container">
+//   <input type="file" name="pic" accept="image/*" className="homepage-button"/>
+//   <input type="submit" className="homepage-button"/>
+// </form>
