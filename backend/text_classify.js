@@ -63,21 +63,18 @@ function createQueries(rdci_codes) {
 async function getItemName(listOfQueries) {
   var i;
   let devtoList = [];
-  //for(i = 0; i < listOfQueries.length; i++) {
+  for(i = 0; i < listOfQueries.length; i++) {
     try {
-      console.log(listOfQueries[0]['web_name'] + listOfQueries[0]['item']);
-      const [result] = await axios(listOfQueries[0]['web_name'] + listOfQueries[0]['item']);
+      const result = await axios.get(listOfQueries[i]['web_name'] + listOfQueries[i]['item']);
       const html = result.data;
       const $ = cheerio.load(html);
       $('.page').each(function(i, elem) {
-        devtoList[0] = {
-        name: $(this).find('h2').text().trim()
-        }
+        devtoList.push($(this).find('h2').text().trim());
       });
     } catch(error){
       console.log(error)
     }
-  //}
+  }
   return devtoList;
 }
 
@@ -87,6 +84,7 @@ async function compile() {
   queries = createQueries(images);
   console.log(queries);
   names = await getItemName(queries);
+  console.log(names);
 }
 
 compile();
