@@ -1,3 +1,8 @@
+.recipe-link {
+  text-decoration: none;
+  border: none;
+}
+
 .recipe-container {
   background-color: #fcf3e5;
   color: #031c47;
@@ -6,6 +11,16 @@
   border-radius: 1em;
   padding: 1.5vw;
   width: 50vw;
+
+  -webkit-transition: background-color 0.4s; /* Safari */
+  transition: background-color 0.4s;
+  -webkit-transition: color 0.4s; /* Safari */
+  transition: color 0.4s;
+}
+
+.recipe-container:hover {
+  background-color: #fff9ef;
+  color: #123b84;
 }
 
 @media (max-width: 760px) {

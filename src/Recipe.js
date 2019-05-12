@@ -8,7 +8,7 @@ function getIngredientsList(arr) {
 }
 
 function Recipe(props) {
-  return (<a href=""> 
+  return (<a class="recipe-link" href="">
     <div className="recipe-container">
       <h3 className="recipe-title">{props.name}</h3>
       <div className="recipe-body">
