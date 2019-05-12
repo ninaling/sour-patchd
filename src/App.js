@@ -71,7 +71,7 @@ class App extends React.Component {
         <img className="food-icon" id="bread-icon" src={bread} alt="" />
         <img className="food-icon" id="lettuce-icon" src={lettuce} alt="" />
         <button className="food-icon" id="cheese-icon-link" onClick={()=>{this.recipesFillTest()}}>
-          <img id="cheese-icon" src={cheese} alt="test" />
+          <img id="cheese-icon-link-img" src={cheese} alt="test" />
         </button>
         <img className="food-icon" id="steak-icon" src={steak} alt="" />
         <img className="food-icon" id="avocado-icon" src={avocado} alt="" />
@@ -110,7 +110,7 @@ class App extends React.Component {
 
   getRecipeDisplay() {
     let body;
-    if (this.state.recipes.length == 0) {
+    if (this.state.recipes.length === 0) {
       body = <h3>Oh no! We couldn't find any recipes. <br /> Try another receipt?</h3>;
     }
     else {
@@ -149,8 +149,8 @@ class App extends React.Component {
 }
 
 var recipesTestValues = [
-  {"name": "Chocolate Chip Cookies", "ingredients": ["Flour", "Butter", "Chocolate"], "ingredientsNeeded": ["Sugar"], "url": ""},
-  {"name": "Snickerdoodles", "ingredients": ["Flour", "Butter", "Cinnamon"], "ingredientsNeeded": [], "url": ""}
+  {"name": "Chocolate Chip Cookies", "ingredients": ["Flour", "Butter", "Chocolate"], "ingredientsNeeded": ["Sugar"], "url": "https://joyfoodsunshine.com/the-most-amazing-chocolate-chip-cookies/"},
+  {"name": "Snickerdoodles", "ingredients": ["Flour", "Butter", "Cinnamon"], "ingredientsNeeded": [], "url": "https://www.allrecipes.com/recipe/10687/mrs-siggs-snickerdoodles/"}
 ];
 
 export default App;

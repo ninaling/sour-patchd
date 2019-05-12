@@ -1,5 +1,5 @@
 #loading-icon {
-	  animation: loading-icon-spin infinite 2s linear;
+	  animation: loading-icon-spin infinite 3s linear;
 	  height: 30vh;
 	  pointer-events: none;
 	}

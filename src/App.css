@@ -73,7 +73,7 @@
     #ffd5cc 60px
   ); */
   background-color: #FDEBD0;
-  height: 100vh;
+  min-height: 100vh;
   padding-top: 6vh;
   margin: 0;
   display: flex;
@@ -127,8 +127,13 @@
   cursor: pointer;
 }
 
-#cheese-icon {
+#cheese-icon-link-img {
   height: 100%;
+}
+
+#cheese-icon {
+  top: 20vh;
+  left: 60vw;
 }
 
 #steak-icon {
