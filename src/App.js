@@ -15,8 +15,8 @@ import Recipe from './Recipe';
 import Form from './Form';
 
 var recipesTemp = [
-  {"name": "Chocolate Chip Cookies", "ingredients": ["Flour", "Butter", "Chocolate"], "ingredientsNeeded": ["Sugar"]},
-  {"name": "Snickerdoodles", "ingredients": ["Flour", "Butter", "Cinnamon"], "ingredientsNeeded": []}
+  {"name": "Chocolate Chip Cookies", "ingredients": ["Flour", "Butter", "Chocolate"], "ingredientsNeeded": ["Sugar"], "url": ""},
+  {"name": "Snickerdoodles", "ingredients": ["Flour", "Butter", "Cinnamon"], "ingredientsNeeded": [], "url": ""}
 ];
 
 class App extends React.Component {
@@ -25,6 +25,7 @@ class App extends React.Component {
     super(props);
     this.state = {
        recipes: [],
+       receiptProcessing: false,
        receiptProcessed: false
     }
   }
@@ -75,7 +76,7 @@ class App extends React.Component {
         <h6>You just got sour patch'd!</h6>
         <h1>Available Recipes</h1>
         {this.state.recipes.map((item, index) => (
-          <Recipe key={item.index} name={item.name} ingredients={item.ingredients} ingredientsNeeded={item.ingredientsNeeded}/>
+          <Recipe key={item.index} name={item.name} ingredients={item.ingredients} ingredientsNeeded={item.ingredientsNeeded} url={item.url}/>
         ))}
       </div>
     </div>);}
