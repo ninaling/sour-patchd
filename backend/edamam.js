@@ -177,7 +177,7 @@ async function idk3(result) {
   return plzwork;
 }
 
-//
+// TEST this file
 // idk3("HI")
 // .then((result) => {
 //   console.log(result);
@@ -186,6 +186,7 @@ async function idk3(result) {
 //   console.log(error);
 // });
 
+// TEST text_classify.js
 // compile('/Users/Saquib/Desktop/test_3.jpg')
 //   .then((result) => {
 //     for(var i = result.length - 1; i > 0; i--){

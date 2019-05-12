@@ -152,12 +152,12 @@ async function compile(filePath) {
   return parsedNames;
 }
 
-compile('/Users/Saquib/Desktop/sour-patchd/backend/photos/recfile-1557689531007.png')
-.then((result) => {
-  console.log(result);
-})
-.catch((error) => {
-  console.log(error);
-});
+// compile('/Users/Saquib/Desktop/sour-patchd/backend/photos/recfile-1557689531007.png')
+// .then((result) => {
+//   console.log(result);
+// })
+// .catch((error) => {
+//   console.log(error);
+// });
 
 module.exports = compile;
