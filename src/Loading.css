@@ -1,6 +1,6 @@
 #loading-icon {
-	  animation: loading-icon-spin infinite 3s linear;
-	  height: 40vh;
+	  animation: loading-icon-spin infinite 2s linear;
+	  height: 30vh;
 	  pointer-events: none;
 	}
 
