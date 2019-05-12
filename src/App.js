@@ -15,11 +15,6 @@ import Recipe from './Recipe';
 import Form from './Form';
 import Loading from './Loading';
 
-var recipesTemp = [
-  {"name": "Chocolate Chip Cookies", "ingredients": ["Flour", "Butter", "Chocolate"], "ingredientsNeeded": ["Sugar"], "url": ""},
-  {"name": "Snickerdoodles", "ingredients": ["Flour", "Butter", "Cinnamon"], "ingredientsNeeded": [], "url": ""}
-];
-
 class App extends React.Component {
 
   constructor(props) {
@@ -31,7 +26,7 @@ class App extends React.Component {
        receiptProcessed: false
     }
 
-    this.recipesTempFill = this.recipesTempFill.bind(this);
+    this.recipesFillTest = this.recipesFillTest.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.getResponse = this.getResponse.bind(this);
   }
@@ -41,8 +36,8 @@ class App extends React.Component {
   }
 
   // temporary, used for testing
-  recipesTempFill() {
-    this.setState({recipes: recipesTemp, receiptProcessed: true});
+  recipesFillTest() {
+    this.setState({recipes: recipesTestValues, receiptProcessed: true});
   }
 
   // set receiptProcessing
@@ -62,7 +57,9 @@ class App extends React.Component {
       <div className="App-header">
         <img className="food-icon" id="bread-icon" src={bread} alt="" />
         <img className="food-icon" id="lettuce-icon" src={lettuce} alt="" />
-        <img className="food-icon" id="cheese-icon" src={cheese} alt="" />
+        <button className="food-icon" id="cheese-icon-link" onClick={()=>{this.recipesFillTest()}}>
+          <img id="cheese-icon" src={cheese} alt="test" />
+        </button>
         <img className="food-icon" id="steak-icon" src={steak} alt="" />
         <img className="food-icon" id="avocado-icon" src={avocado} alt="" />
         <img className="food-icon" id="fish-icon" src={fish} alt="" />
@@ -76,8 +73,6 @@ class App extends React.Component {
         <div id="homepage-upload">
           <p>Get started by uploading a receipt:</p>
           <Form response={this.getResponse} submitHandler={this.onFormSubmit}/>
-          {/* temporary button for testing purposes */}
-          <button onClick={() => {this.recipesTempFill()}}>temp</button>
         </div>
       </div>
     </div>);}
@@ -139,6 +134,11 @@ class App extends React.Component {
         {display}
       </div>);}
 }
+
+var recipesTestValues = [
+  {"name": "Chocolate Chip Cookies", "ingredients": ["Flour", "Butter", "Chocolate"], "ingredientsNeeded": ["Sugar"], "url": ""},
+  {"name": "Snickerdoodles", "ingredients": ["Flour", "Butter", "Cinnamon"], "ingredientsNeeded": [], "url": ""}
+];
 
 export default App;
 

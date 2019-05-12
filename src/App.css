@@ -115,9 +115,20 @@
   }
 }
 
-#cheese-icon {
+#cheese-icon-link {
   top: 20vh;
   left: 60vw;
+  background: none;
+  outline: none;
+  border: none;
+}
+
+#cheese-icon-link:hover {
+  cursor: pointer;
+}
+
+#cheese-icon {
+  height: 100%;
 }
 
 #steak-icon {
