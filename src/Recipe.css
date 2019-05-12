@@ -1,8 +1,26 @@
 .recipe-container {
-  background-color: #FDEBD0;
-  color: black;
+  background-color: #fcf3e5;
+  color: #031c47;
+  font-family: 'Lora', serif;
   margin: 2vh;
   border-radius: 1em;
-  padding: 2vh;
+  padding: 3vw;
   width: 50vw;
+}
+
+.recipe-title {
+  font-weight: 700;
+  margin: 0.5em 0 0.8em 0;
+}
+
+.recipe-body h4 {
+  /* text-align: left; */
+  font-weight: 400;
+  font-size: 0.9em;
+  margin: 0.5em 0;
+}
+
+.recipe-body p {
+  font-size: 0.7em;
+  margin: 0.5em 0 0.9em 0;
 }
