@@ -8,6 +8,7 @@
 .file-upload-button {
   font-size: 0.8em;
   border-radius: 0.8em;
+  outline: none;
 }
 
 .file-upload-button:hover {
