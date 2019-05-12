@@ -1,13 +1,10 @@
 const vision = require('@google-cloud/vision');
 const axios = require('axios');
 const cheerio = require('cheerio');
+const unirest = require('unirest');
 
 // Creates a client
 const client = new vision.ImageAnnotatorClient();
-/**
- * TODO(developer): Uncomment the following line before running the sample.
- */
-
 
 function parseOutput(textDescriptors) {
   if(textDescriptors.length == 9 && parseInt(textDescriptors))
@@ -78,13 +75,76 @@ async function getItemName(listOfQueries) {
   return devtoList;
 }
 
+async function isInDictionary(word) {
+  try {
+    result = await unirest.get("https://wordsapiv1.p.mashape.com/words/" + word)
+    .header("X-Mashape-Key", "63b974140fmsh6c4b67feecef3cbp12a7edjsnaf936681e241")
+    .header("Accept", "application/json");
+  } catch(error) {
+    console.log(error);
+  }
+
+  if(result.body['results'] != null)
+    return true;
+  return false;
+}
+
+async function partOfSpeechAnalysis(word) {
+  var result;
+  try {
+    result = await unirest.get("https://wordsapiv1.p.mashape.com/words/" + word)
+    .header("X-Mashape-Key", "63b974140fmsh6c4b67feecef3cbp12a7edjsnaf936681e241")
+    .header("Accept", "application/json");
+  } catch(error) {
+    console.log(error);
+  }
+
+  return result.body['results'][0]['partOfSpeech'];  
+}
+
+function charParser(word) {
+  word = word.replace(',', '');
+  word = word.replace('!', '');
+  word = word.replace('.', '');
+  word = word.replace('<', '');
+  word = word.replace('>', '');
+  word = word.replace('?', '');
+  word = word.replace('&', '');
+  word = word.replace('*', '');
+  word = word.replace('@', '');
+  word = word.replace('+', '');
+  word = word.replace("  ", ' ');
+  return word;
+}
+
 async function compile() {
   images = await parseImage();
-  console.log(images);
   queries = createQueries(images);
-  console.log(queries);
   names = await getItemName(queries);
-  console.log(names);
+  var i;
+  let parsedNames = [];
+  for(i = 0; i < names.length; i++) {
+    parsedNames.push(charParser(names[i].split('-')[0]));
+  }
+
+  var j;
+  for(i = 0; i < parsedNames.length; i++) {
+    words = parsedNames[i].split(' ');
+    finishedString = '';
+    var j;
+    for(j = 0; j < words.length; j++) {
+      inDict = await isInDictionary(words[j]);
+      if(inDict) {
+        partOfSpeech = await partOfSpeechAnalysis(words[j]);
+        if(partOfSpeech != 'adjective') {
+          finishedString = finishedString + words[j] + ' ';
+        }
+      }
+    }
+    parsedNames[i] = (finishedString.toLowerCase()).substring(0, finishedString.length-1);
+  }
+
+  console.log(parsedNames);
 }
 
 compile();
