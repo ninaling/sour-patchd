@@ -30,15 +30,29 @@ class Form extends React.Component {
     }
     onChange(e) {
         this.setState({file:e.target.files[0]});
+        if (document.getElementById("file-upload").files.length !== 0){
+          document.getElementById("file-upload-label").innerHTML = "File chosen";
+        }
     }
 
     render() {
         return (
-            <form onSubmit={this.onFormSubmit}>
+          <div>
+            <script language="Javascript">
+                {function IsEmpty() {
+                  if (document.getElementById("file-upload").value == null){
+                    document.getElementById("file-upload-text").content = "File chosen";
+                  }
+                }}
+            </script>
+            <form id="file-form" onSubmit={this.onFormSubmit}>
+                <label htmlFor="file-upload" class="file-upload-button" id="file-upload-label">
+                    Choose a file</label>
                 <input type="file" name="recfile" onChange={this.onChange} id="file-upload"/>
-                <label htmlFor="file-upload" class="file-upload-button" id="file-upload-label">Choose a file</label>
+                <span id="file-upload-text"></span>
                 <button type="submit" class="file-upload-button" id="file-upload-submit">Upload</button>
             </form>
+          </div>
         )
     }
 }
