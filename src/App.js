@@ -46,14 +46,26 @@ class App extends React.Component {
 
   // set receiptProcessing
   onFormSubmit(sub){
-    // this.setState({receiptProcessing: sub})
-    console.log(sub);
+    this.setState({receiptProcessing: sub})
   }
 
   // get response from POST request
   getResponse(res){
-    console.log(res);
-    // this.setState({tempRecipes: res, recipes: [] receiptProcessed: false, receiptProcessing: true})
+    let data = res;
+    let recipe = [];
+    recipe.push({
+      'name': data.data[1]['label'],
+      'ingredients': data.data[1]['haves'],
+      'ingredientsNeeded': data.data[1]['have_nots'],
+      'url': data.data[1]['url']
+    });
+    recipe.push({
+      'name': data.data[2]['label'],
+      'ingredients': data.data[2]['haves'],
+      'ingredientsNeeded': data.data[2]['have_nots'],
+      'url': data.data[2]['url']
+    });
+    this.setState({tempRecipes: res, recipes: recipe, receiptProcessed: true});
   }
 
   getHomeScreen() {
