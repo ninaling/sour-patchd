@@ -8,6 +8,8 @@ import avocado from './assets/icons/avocado.svg';
 import fish from './assets/icons/fish.svg';
 import veggie from './assets/icons/veggie.svg';
 import watermelon from './assets/icons/watermelon.svg';
+import egg from './assets/icons/egg.svg';
+import milk from './assets/icons/milk.svg';
 import './App.css';
 import Recipe from './Recipe';
 import Form from './Form';
@@ -47,11 +49,13 @@ class App extends React.Component {
         <img className="food-icon" id="fish-icon" src={fish} alt="" />
         <img className="food-icon" id="veggie-icon" src={veggie} alt="" />
         <img className="food-icon" id="watermelon-icon" src={watermelon} alt="" />
+        <img className="food-icon" id="egg-icon" src={egg} alt="" />
+        <img className="food-icon" id="milk-icon" src={milk} alt="" />
         <h1 id="homepage-title">
           Welcome to Sour Patch'd.
         </h1>
         <div id="homepage-upload">
-          <p>Get Started by uploading a receipt:</p>
+          <p>Get started by uploading a receipt:</p>
           <Form/>
           {/* temporary button for testing purposes */}
           <button onClick={() => {this.recipesTempFill()}}>temp</button>

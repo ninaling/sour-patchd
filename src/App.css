@@ -116,7 +116,7 @@
 
 #cheese-icon {
   top: 20vh;
-  left: 45vw;
+  left: 60vw;
 }
 
 #steak-icon {
@@ -126,7 +126,17 @@
 
 #avocado-icon {
   top: 40vh;
-  left: 85vw;
+  left: 80vw;
+}
+
+#egg-icon {
+  top: 75vh;
+  left: 35vw;
+}
+
+#milk-icon {
+  top: 12vh;
+  left: 38vw;
 }
 
 @media (max-width: 760px) {
@@ -136,13 +146,13 @@
 }
 
 #fish-icon {
-  top: 70vh;
-  left: 50vw;
+  top: 85vh;
+  left: 60vw;
 }
 
 #veggie-icon {
-  top: 80vh;
-  left: 75vw;
+  top: 70vh;
+  left: 85vw;
 }
 
 #watermelon-icon {
