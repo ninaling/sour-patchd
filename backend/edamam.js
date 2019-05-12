@@ -11,8 +11,8 @@ function createPath(){
       app_id: '75b16e35',
       app_key: '96c4d4b9393680b61c02a15ef2754968',
       from: '0',
-      to: '3',
-      calories: '591-722',
+      to: '5',
+      calories: '0-2000',
       health: 'alcohol-free'
     }
   });
@@ -111,28 +111,52 @@ async function recRecipe(ingredients, response) {
   return response
 }
 
-async function recipeParser(result){
-  //result = ['good foods guacamole', 'natures own honey wheat bread products', 'clementines'];
-  // result = ['good foods guacamole', 'natures own honey wheat bread products', 'clementines'];
+async function getFinal(item){
+  potential_ings = item.split(" ");
 
-  // console.log(result);
+  for(var i = potential_ings.length - 1; i >= 0; i--){
+    var recipes = '';
+    try {
+      recipes = await recipe([potential_ings[i]]);
+    } catch(error) {
+      console.log(error);
+      return "ERR";
+    }
+    if(recipes != ''){
+      return potential_ings[i];
+    }
+  }
+
+  return ''
+}
+
+async function recipeParser(result){
 
   recipes = '';
   final_items = [];
 
+  for(var i = 0; i < result.length; i++){
+    var curr_item = result[i];
+    var item = '';
+    try {
+      item = await getFinal(curr_item);
+    }
+    catch(err){
+      console.log(err)
+    }
+    if(item != '' && item != 'ERR'){
+      final_items.push(item)
+    }
+
+  }
+
+  console.log(final_items)
 
   while(true) {
     if(result === []) {
       return;
     }
-    last_item = result[result.length-1];
-    final_items = [];
-    for(var i = 0; i < result.length; i++){
-      var curr_item = result[i];
-      potential_ings = curr_item.split(" ");
-      final_items.push(potential_ings[potential_ings.length-1]);
-    }
-    // console.log(final_items);
+
     try {
       recipes = await recRecipe(final_items, recipes);
     } catch(error) {
@@ -142,29 +166,9 @@ async function recipeParser(result){
       return recipes;
     }
     else {
-      if(result[result.length-1].lastIndexOf(" ") === -1) {
-        result.pop();
-      }
-      else {
-        last_item = last_item.substring(0, last_item.lastIndexOf(" "));
-        last_ind = last_item.split(" ");
-        result[result.length-1] = last_ind[last_ind.length-1];
-      }
+      final_items.pop();
     }
   }
-
-  /*for(var i = 0; i < result.length; i++){
-    var curr_item = result[i];
-    potential_ings = curr_item.split(" ");
-    final_items.push(potential_ings[potential_ings.length-1]);
-  }
-  console.log(final_items);
-  try {
-    recipes = await recipe(final_items);
-    return recipes;
-  } catch(error) {
-    console.log(error);
-  }*/
 }
 
 async function idk3(result) {
@@ -173,7 +177,8 @@ async function idk3(result) {
   return plzwork;
 }
 
-// idk3()
+//
+// idk3("HI")
 // .then((result) => {
 //   console.log(result);
 // })
@@ -192,29 +197,3 @@ async function idk3(result) {
 //   });
 
 module.exports = idk3;
-
-// console.log(final_items);
-// for(var j = 0; j < potential_ings.length; j++){
-//   try{
-//     var a = await idk(ingredients)
-//   }
-//   catch(err){
-//     console.log(err);
-//     return
-//   }
-//
-//   if(a.length > 0){
-//     final_items.push(potential_ings[i]);
-//   }
-//
-// }
-
-// var ingredients = ["beef", "chicken"];
-
-// idk(ingredients)
-//   .then((result) => {
-//     console.log(result);
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   })
