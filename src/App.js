@@ -1,26 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+var homeScreen = <div className="App">
+  <header className="App-header">
+    <h1>
+      Welcome to Sour Patchd.
+    </h1>
+    <div>
+      Get Started:
+      <form id="homepage-button-container">
+        <input type="file" name="pic" accept="image/*" className="homepage-button"/>
+        <input type="submit" className="homepage-button"/>
+      </form>
     </div>
-  );
+  </header>
+</div>;
+
+function App() {
+  return homeScreen;
 }
 
 export default App;

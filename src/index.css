@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+#homepage-button-container {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+}
+
+.homepage-button {
+  display: inline-block;
+  text-align: center;
+}
