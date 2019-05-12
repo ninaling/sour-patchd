@@ -21,6 +21,12 @@
   padding: 0.5em;
   display: inline-block;
   margin-right: 1em;
+  -webkit-transition: background-color 0.2s; /* Safari */
+  transition: background-color 0.2s;
+}
+
+#file-upload-label:hover {
+  background-color: #2250a3;
 }
 
 #file-upload-submit {
@@ -32,4 +38,16 @@
   display: inline-block;
   font-family: 'Lora', serif;
   font-weight: 700;
+  -webkit-transition: background-color 0.4s; /* Safari */
+  transition: background-color 0.4s;
+  -webkit-transition: color 0.2s; /* Safari */
+  transition: color 0.2s;
+  -webkit-transition: border-color 0.2s; /* Safari */
+  transition: border-color 0.2s;
+}
+
+#file-upload-submit:hover {
+  color: #2250a3;
+  border-color: #2250a3;
+  background-color: #ffefd8;
 }
