@@ -3,7 +3,7 @@ import React from 'react';
 import './Recipe.css';
 
 function getIngredientsList(arr) {
-  if (arr.length == 0) { return "N/A"; }
+  if (arr.length === 0) { return "N/A"; }
   else return arr.join(', ')
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-//import logo from './logo.svg';
+import logo from './assets/logo-navy.png';
 import './App.css';
 import Recipe from './Recipe';
 
@@ -25,6 +25,7 @@ var homeScreen = <div className="App">
 
 var homeScreen2 = <div className="App">
     <div className="recipe-display">
+      <h6>You just got sour patch'd!</h6>
       <h1>Available Recipes</h1>
       {recipes.map((item, index) => (
         <Recipe key={item.index} name={item.name} ingredients={item.ingredients} ingredientsNeeded={item.ingredientsNeeded}/>
@@ -33,10 +34,10 @@ var homeScreen2 = <div className="App">
   </div>;
 
 function App() {
-  return (<nav>
-
-    </nav>
-    , homeScreen2);
+  return ([<nav id="nav-bar">
+      <a><img src={logo}/></a>
+    </nav>,
+    homeScreen]);
 }
 
 export default App;

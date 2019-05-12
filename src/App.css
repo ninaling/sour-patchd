@@ -19,6 +19,24 @@
   color: #12387a;
 }
 
+#nav-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+
+  height: 10vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 1vw;
+}
+
+#nav-bar img {
+  height: 6vh;
+}
+
 #homepage-button-container {
   display: -webkit-flex;
   display: flex;
@@ -47,4 +65,14 @@
   justify-content: flex-start;
   font-size: calc(10px + 2vmin);
   color: #12387a;
+}
+
+.recipe-display h1 {
+  margin: 0.3em;
+}
+
+.recipe-display h6 {
+  font-family: "Lora", serif;
+  margin: 0;
+  font-weight: 400;
 }
