@@ -1,5 +1,4 @@
 var buildUrl = require('build-url');
-// var request = require('request');
 const axios = require('axios');
 const compile = require('./text_classify.js');
 const unirest = require('unirest');
@@ -112,11 +111,11 @@ async function recRecipe(ingredients, response) {
   return response
 }
 
-async function recipeParser(){
+async function recipeParser(result){
   //result = ['good foods guacamole', 'natures own honey wheat bread products', 'clementines'];
-  result = ['good foods guacamole', 'natures own honey wheat bread products', 'clementines'];
+  // result = ['good foods guacamole', 'natures own honey wheat bread products', 'clementines'];
 
-  console.log(result);
+  // console.log(result);
 
   recipes = '';
   final_items = [];
@@ -133,7 +132,7 @@ async function recipeParser(){
       potential_ings = curr_item.split(" ");
       final_items.push(potential_ings[potential_ings.length-1]);
     }
-    console.log(final_items);
+    // console.log(final_items);
     try {
       recipes = await recRecipe(final_items, recipes);
     } catch(error) {
@@ -159,9 +158,7 @@ async function recipeParser(){
     potential_ings = curr_item.split(" ");
     final_items.push(potential_ings[potential_ings.length-1]);
   }
-
   console.log(final_items);
-
   try {
     recipes = await recipe(final_items);
     return recipes;
@@ -170,19 +167,31 @@ async function recipeParser(){
   }*/
 }
 
-async function idk3() {
-  plzwork = await recipeParser();
-  //console.log(plzwork);
+async function idk3(result) {
+  plzwork = await recipeParser(result);
+  console.log(plzwork);
   return plzwork;
 }
 
-idk3();
+// idk3()
 // .then((result) => {
 //   console.log(result);
 // })
 // .catch((error) => {
 //   console.log(error);
 // });
+
+// compile('/Users/Saquib/Desktop/test_3.jpg')
+//   .then((result) => {
+//     for(var i = result.length - 1; i > 0; i--){
+//       console.log(result[i]);
+//     }
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+
+module.exports = idk3;
 
 // console.log(final_items);
 // for(var j = 0; j < potential_ings.length; j++){
@@ -209,13 +218,3 @@ idk3();
 //   .catch((error) => {
 //     console.log(error);
 //   })
-
-// compile()
-//   .then((result) => {
-//     for(var i = result.length - 1; i > 0; i--){
-//       console.log(result[i]);
-//     }
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });

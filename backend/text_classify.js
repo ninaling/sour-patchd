@@ -13,12 +13,12 @@ function parseOutput(textDescriptors) {
 }
 
 // Performs label detection on the image file
-async function parseImage() {
-  const fileName = '/Users/rahulnatarajan/Desktop/sour-patchd/backend/receipt.jpg';
+async function parseImage(filePath) {
+  // const filePath = '/Users/Saquib/Desktop/test_3.jpg';
   let rdci_codes = [];
 
   try {
-    const [result] = await client.textDetection(fileName);
+    const [result] = await client.textDetection(filePath);
     const detections = result.textAnnotations;
     detections.forEach(text => {
       if(parseOutput(text.description))
@@ -117,8 +117,8 @@ function charParser(word) {
   return word;
 }
 
-async function compile() {
-  images = await parseImage();
+async function compile(filePath) {
+  images = await parseImage(filePath);
   queries = createQueries(images);
   names = await getItemName(queries);
   var i;
