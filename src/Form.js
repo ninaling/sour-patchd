@@ -21,11 +21,13 @@ class Form extends React.Component {
                 'content-type': 'multipart/form-data'
             }
         };
+        this.props.submitHandler(true)
         axios.post("http://localhost:3000/receipt", formData, config)
             .then((response) => {
-                alert("The file is successfully uploaded");
+                this.props.response(response);
+                this.props.submitHandler(false);
             }).catch((error) => {
-              console.log("hi")
+              console.log(error)
         });
     }
     onChange(e) {
