@@ -17,12 +17,8 @@ function parseOutput(textDescriptors) {
 
 // Performs label detection on the image file
 async function parseImage() {
-  const fileName = '/Users/Saquib/Desktop/test1.jpg';
+  const fileName = '/Users/rahulnatarajan/Desktop/sour-patchd/backend/receipt.jpg';
   let rdci_codes = [];
-  //
-  // var image = {
-  //   source: {imageUri: fileName}
-  // };
 
   try {
     const [result] = await client.textDetection(fileName);
@@ -45,11 +41,11 @@ function reformat_rdci(original_rdci) {
   + original_rdci.substring(5);
 }
 
-function createQueries() {
+function createQueries(rdci_codes) {
   listOfQueries = [];
 
   query = {
-    'web_name': 'https://brickseek.com/target-inventory-checker',
+    'web_name': 'https://brickseek.com/target-inventory-checker/',
     'item': '?sku=',
   };
 
@@ -64,38 +60,33 @@ function createQueries() {
   return listOfQueries;
 }
 
-function getItemName() {
+async function getItemName(listOfQueries) {
   var i;
-  for(i = 0; i < listOfQueries.length; i++) {
-    axios(listOfQueries[i]['web_name'] + listOfQueries[i]['item'])
-    .then((response) => {
-        if(response.status === 200) {
-            const html = response.data;
-            const $ = cheerio.load(html);
-            let devtoList = [];
-            $('.page').each(function(i, elem) {
-                devtoList[i] = {
-                    name: $(this).find('h2').text().trim()
-                }
-            });
-            console.log(devtoList[0]['name']);
+  let devtoList = [];
+  //for(i = 0; i < listOfQueries.length; i++) {
+    try {
+      console.log(listOfQueries[0]['web_name'] + listOfQueries[0]['item']);
+      const [result] = await axios(listOfQueries[0]['web_name'] + listOfQueries[0]['item']);
+      const html = result.data;
+      const $ = cheerio.load(html);
+      $('.page').each(function(i, elem) {
+        devtoList[0] = {
+        name: $(this).find('h2').text().trim()
         }
-    })
-    .catch((err) => {
-        console.log(err)
-    });
-  }
+      });
+    } catch(error){
+      console.log(error)
+    }
+  //}
+  return devtoList;
 }
 
 async function compile() {
   images = await parseImage();
   console.log(images);
-    // .catch(error => {
-    //   console.log("here")
-    //   console.log(error);
-    // });
-    // console.log("bruh")
-    // console.log(images);
+  queries = createQueries(images);
+  console.log(queries);
+  names = await getItemName(queries);
 }
 
 compile();
