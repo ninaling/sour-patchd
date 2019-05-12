@@ -99,7 +99,7 @@ async function partOfSpeechAnalysis(word) {
     console.log(error);
   }
 
-  return result.body['results'][0]['partOfSpeech'];  
+  return result.body['results'][0]['partOfSpeech'];
 }
 
 function charParser(word) {
@@ -144,7 +144,7 @@ async function compile() {
     parsedNames[i] = (finishedString.toLowerCase()).substring(0, finishedString.length-1);
   }
 
-  console.log(parsedNames);
+  return parsedNames;
 }
 
-compile();
+module.exports = compile;

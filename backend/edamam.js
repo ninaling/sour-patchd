@@ -1,6 +1,7 @@
 var buildUrl = require('build-url');
 // var request = require('request');
 const axios = require('axios');
+const compile = require('./text_classify.js');
 
 function createPath(){
   return buildUrl('https://api.edamam.com', {
@@ -134,17 +135,83 @@ function separate_ingredients(ingredients, all){
   }
 }
 
-function idk(ingredients){
+async function idk(ingredients){
   return recipe(ingredients);
 }
 
-var ingredients = ["beef", "chicken"];
-console.log(idk(ingredients));
+async function idk2(){
+  result = ['good foods guacamole', 'natures own honey wheat bread products', 'clementines'];
 
-idk(ingredients)
-  .then((result) => {
-    console.log(result);
-  })
-  .catch((error) => {
+  final_items = [];
+  for(var i = result.length - 1; i >= 0; i--){
+    var curr_item = result[i];
+    // console.log(curr_item)
+    potential_ings = curr_item.split(" ");
+    final_items.push(potential_ings[0]);
+  }
+
+  try {
+    recipes = await idk(final_items);
+    return recipes;
+  } catch(error) {
     console.log(error);
-  })
+  }
+  /*idk(final_items)
+    .then((result) => {
+      // console.log(result)
+      return result;
+    })
+    .catch((error) => {
+      console.log(error);
+    })*/
+}
+
+async function idk3() {
+  plzwork = await idk2();
+  console.log(plzwork);
+  return plzwork;
+}
+
+idk3();
+// .then((result) => {
+//   console.log(result);
+// })
+// .catch((error) => {
+//   console.log(error);
+// });
+
+// console.log(final_items);
+// for(var j = 0; j < potential_ings.length; j++){
+//   try{
+//     var a = await idk(ingredients)
+//   }
+//   catch(err){
+//     console.log(err);
+//     return
+//   }
+//
+//   if(a.length > 0){
+//     final_items.push(potential_ings[i]);
+//   }
+//
+// }
+
+// var ingredients = ["beef", "chicken"];
+
+// idk(ingredients)
+//   .then((result) => {
+//     console.log(result);
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   })
+
+// compile()
+//   .then((result) => {
+//     for(var i = result.length - 1; i > 0; i--){
+//       console.log(result[i]);
+//     }
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
