@@ -34,7 +34,6 @@ class Form extends React.Component {
     render() {
         return (
             <form onSubmit={this.onFormSubmit}>
-                <h1>File Upload</h1>
                 <input type="file" name="recfile" onChange= {this.onChange} />
                 <button type="submit">Upload</button>
             </form>
