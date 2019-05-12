@@ -2,6 +2,7 @@ var buildUrl = require('build-url');
 // var request = require('request');
 const axios = require('axios');
 const compile = require('./text_classify.js');
+const unirest = require('unirest');
 
 function createPath(){
   return buildUrl('https://api.edamam.com', {
@@ -42,14 +43,13 @@ async function recipe(ingredients){
   var query_url = createPath(qParam);
   query_url = query_url.replace("q=", qParam);
 
+  //console.log(query_url);
+
   shortened_recipes = [];
 
   try{
     const result = await axios.get(query_url);
-    // console.log(result.data.hits)
-    // recipes = JSON.parse(result.data);
-    var recipes = result.data.hits;
-
+    recipes = result.data.hits;
     // parse response
 
     for(var i = 0; i < recipes.length; i++){
@@ -68,7 +68,6 @@ async function recipe(ingredients){
       });
     }
 
-    // console.log(shortened_recipes)
     return shortened_recipes;
 
   }
@@ -76,40 +75,6 @@ async function recipe(ingredients){
     console.log(error);
     return
   }
-
-
-  // GET request from Edamam
-  request(query_url, function (error, response, body) {
-
-    if(error != null){
-      console.log('error:', error); // Print the error if one occurred
-    }
-
-    console.log('statusCode:', response.statusCode); // Print the response status code if a response was received
-
-    recipes = JSON.parse(response.body);
-
-    // parse response
-    shortened_recipes = [];
-    for(var i = 0; i < recipes.hits.length; i++){
-      var curr_recipe = recipes.hits[i].recipe;
-
-      var ings = separate_ingredients(ingredients, curr_recipe.ingredientLines);
-
-      shortened_recipes.push({
-        label: curr_recipe.label,
-        calories: curr_recipe.calories,
-        totalTime: curr_recipe.totalTime,
-        url: curr_recipe.url,
-        haves: ings.haves,
-        have_nots: ings.have_nots,
-        ingredientLines: curr_recipe.ingredientLines
-      });
-    }
-
-    // console.log(shortened_recipes)
-    return shortened_recipes;
-  });
 }
 
 function separate_ingredients(ingredients, all){
@@ -135,40 +100,79 @@ function separate_ingredients(ingredients, all){
   }
 }
 
-async function idk(ingredients){
-  return recipe(ingredients);
-}
 
-async function idk2(){
-  result = ['good foods guacamole', 'natures own honey wheat bread products', 'clementines'];
-
-  final_items = [];
-  for(var i = result.length - 1; i >= 0; i--){
-    var curr_item = result[i];
-    // console.log(curr_item)
-    potential_ings = curr_item.split(" ");
-    final_items.push(potential_ings[0]);
-  }
-
+async function recRecipe(ingredients, response) {
   try {
-    recipes = await idk(final_items);
-    return recipes;
+    response = await recipe(ingredients);
+    //console.log(response);
+    return response;
   } catch(error) {
     console.log(error);
   }
-  /*idk(final_items)
-    .then((result) => {
-      // console.log(result)
-      return result;
-    })
-    .catch((error) => {
+  return response
+}
+
+async function recipeParser(){
+  //result = ['good foods guacamole', 'natures own honey wheat bread products', 'clementines'];
+  result = ['good foods guacamole', 'natures own honey wheat bread products', 'clementines'];
+
+  console.log(result);
+
+  recipes = '';
+  final_items = [];
+
+
+  while(true) {
+    if(result === []) {
+      return;
+    }
+    last_item = result[result.length-1];
+    final_items = [];
+    for(var i = 0; i < result.length; i++){
+      var curr_item = result[i];
+      potential_ings = curr_item.split(" ");
+      final_items.push(potential_ings[potential_ings.length-1]);
+    }
+    console.log(final_items);
+    try {
+      recipes = await recRecipe(final_items, recipes);
+    } catch(error) {
       console.log(error);
-    })*/
+    }
+    if(recipes != '') {
+      return recipes;
+    }
+    else {
+      if(result[result.length-1].lastIndexOf(" ") === -1) {
+        result.pop();
+      }
+      else {
+        last_item = last_item.substring(0, last_item.lastIndexOf(" "));
+        last_ind = last_item.split(" ");
+        result[result.length-1] = last_ind[last_ind.length-1];
+      }
+    }
+  }
+
+  /*for(var i = 0; i < result.length; i++){
+    var curr_item = result[i];
+    potential_ings = curr_item.split(" ");
+    final_items.push(potential_ings[potential_ings.length-1]);
+  }
+
+  console.log(final_items);
+
+  try {
+    recipes = await recipe(final_items);
+    return recipes;
+  } catch(error) {
+    console.log(error);
+  }*/
 }
 
 async function idk3() {
-  plzwork = await idk2();
-  console.log(plzwork);
+  plzwork = await recipeParser();
+  //console.log(plzwork);
   return plzwork;
 }
 
