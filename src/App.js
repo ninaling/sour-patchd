@@ -26,9 +26,14 @@ class App extends React.Component {
     super(props);
     this.state = {
        recipes: [],
+       tempRecipes: [],
        receiptProcessing: false,
        receiptProcessed: false
     }
+
+    this.recipesTempFill = this.recipesTempFill.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.getResponse = this.getResponse.bind(this);
   }
 
   returnToHome() {
@@ -38,6 +43,18 @@ class App extends React.Component {
   // temporary, used for testing
   recipesTempFill() {
     this.setState({recipes: recipesTemp, receiptProcessed: true});
+  }
+
+  // set receiptProcessing
+  onFormSubmit(sub){
+    // this.setState({receiptProcessing: sub})
+    console.log(sub);
+  }
+
+  // get response from POST request
+  getResponse(res){
+    console.log(res);
+    // this.setState({tempRecipes: res, recipes: [] receiptProcessed: false, receiptProcessing: true})
   }
 
   getHomeScreen() {
@@ -58,7 +75,7 @@ class App extends React.Component {
         </h1>
         <div id="homepage-upload">
           <p>Get started by uploading a receipt:</p>
-          <Form/>
+          <Form response={this.getResponse} submitHandler={this.onFormSubmit}/>
           {/* temporary button for testing purposes */}
           <button onClick={() => {this.recipesTempFill()}}>temp</button>
         </div>

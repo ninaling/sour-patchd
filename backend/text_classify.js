@@ -103,6 +103,7 @@ async function partOfSpeechAnalysis(word) {
 }
 
 function charParser(word) {
+  word = word.toLowerCase()
   word = word.replace(',', '');
   word = word.replace('!', '');
   word = word.replace('.', '');
@@ -114,6 +115,10 @@ function charParser(word) {
   word = word.replace('@', '');
   word = word.replace('+', '');
   word = word.replace("  ", ' ');
+  word = word.replace('products', '');
+  word = word.replace('product', '');
+  word = word.replace('own', '');
+  word = word.replace('foods', '');
   return word;
 }
 
@@ -146,5 +151,13 @@ async function compile(filePath) {
 
   return parsedNames;
 }
+
+// compile('/Users/Saquib/Desktop/sour-patchd/backend/photos/recfile-1557689531007.png')
+// .then((result) => {
+//   console.log(result);
+// })
+// .catch((error) => {
+//   console.log(error);
+// });
 
 module.exports = compile;

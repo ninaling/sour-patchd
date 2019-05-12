@@ -2,6 +2,7 @@ const bodyParser = require('body-parser');
 const express  = require('express');
 var multer = require('multer');
 const path = require('path');
+var cors = require('cors');
 
 // handle saving of a POSTed photo
 const {storage, upload} = require('./photos.js');
@@ -16,6 +17,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(cors());
 
 // POST photos here
 // TODO: don't know how to get error handling to work
