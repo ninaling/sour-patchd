@@ -1,3 +1,9 @@
+# Get Sourpatchd !
+
+To start frontend, run `npm start` from the root directory
+To start backend, run `node server.js` from the backend directory
+Photos submitted on the frontend will be saved in /backend/photos/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

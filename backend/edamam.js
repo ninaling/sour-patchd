@@ -8,8 +8,8 @@ function createPath(){
     path: 'search',
     queryParams: {
       q: '',
-      app_id: '75b16e35',
-      app_key: '96c4d4b9393680b61c02a15ef2754968',
+      app_id: '37558882',
+      app_key: '0d32feed48cc030d66dc9712495d1e1d',
       from: '0',
       to: '5',
       calories: '0-2000',
@@ -49,7 +49,11 @@ async function recipe(ingredients){
   try{
     const result = await axios.get(query_url);
     recipes = result.data.hits;
-    // parse response
+
+    // TODO: handle this
+    if(recipes.length == 0){
+      console.log("SUP")
+    }
 
     for(var i = 0; i < recipes.length; i++){
       var curr_recipe = recipes[i].recipe;
@@ -126,7 +130,7 @@ async function getFinal(item){
       return potential_ings[i];
     }
   }
-
+  console.log("TTTTT")
   return ''
 }
 
@@ -173,7 +177,7 @@ async function recipeParser(result){
 
 async function idk3(result) {
   plzwork = await recipeParser(result);
-  console.log(plzwork);
+  // console.log(plzwork);
   return plzwork;
 }
 
